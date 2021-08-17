@@ -27,13 +27,13 @@ function collectColors(color) {
 }
 
 function initialize() {
+  allColors = [];
   for (let counter = 0; counter < balls.length; counter += 1) {
     const newColor = randomizeColors();
     collectColors(newColor);
     balls[counter].style.background = `rgb(${newColor[0]}, ${newColor[1]}, ${newColor[2]}`;
     balls[counter].classList.remove('selected');
   }
-  allColors = [];
   answer.innerText = 'Escolha uma cor';
 }
 
