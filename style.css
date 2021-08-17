@@ -2,6 +2,14 @@
   width: 80px;
   height: 80px;
   display: inline-block;
-  border: 1px solid black;
+  border: 5px solid black;
   border-radius: 50%;
+}
+
+.ball:hover {
+  border: 5px dashed black;
+}
+
+.selected {
+  border: 5px dashed black;
 }
