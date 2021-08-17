@@ -1,7 +1,8 @@
 const balls = Array.from(document.getElementsByClassName('ball'));
 const rgbColor = document.getElementById('rgb-color');
-const allColors = [];
+let allColors = [];
 const answer = document.getElementById('answer');
+const resetButton = document.getElementById('reset-game');
 
 function randomizeColors() {
   const firstRandomNumber = Math.floor(Math.random() * 255);
@@ -11,26 +12,32 @@ function randomizeColors() {
   return randomArray;
 }
 
-function collectColors(color) {
-  const colorFormat = `(${color[0]}, ${color[1]}, ${color[2]})`;
-  allColors.push(colorFormat);
-}
-
 function addChallengeColor() {
   const randomInt = Math.floor(Math.random() * 6);
   const challengeColor = allColors[randomInt];
   rgbColor.innerText = challengeColor;
 }
 
-window.onload = function initialize() {
+function collectColors(color) {
+  const colorFormat = `(${color[0]}, ${color[1]}, ${color[2]})`;
+  allColors.push(colorFormat);
+  if (allColors.length === 6) {
+    addChallengeColor();
+  }
+}
+
+function initialize() {
   for (let counter = 0; counter < balls.length; counter += 1) {
     const newColor = randomizeColors();
     collectColors(newColor);
     balls[counter].style.background = `rgb(${newColor[0]}, ${newColor[1]}, ${newColor[2]}`;
+    balls[counter].classList.remove('selected');
   }
-  addChallengeColor();
+  allColors = [];
   answer.innerText = 'Escolha uma cor';
-};
+}
+
+window.onload = initialize;
 
 function checkAnswer(ball) {
   const ballColor = ball.style.background;
@@ -56,3 +63,8 @@ function addSelected(originEvent) {
 for (let counter = 0; counter < balls.length; counter += 1) {
   balls[counter].addEventListener('click', addSelected);
 }
+
+function resetGame() {
+  initialize();
+}
+resetButton.addEventListener('click', resetGame);
