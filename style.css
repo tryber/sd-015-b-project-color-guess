@@ -1,5 +1,5 @@
 body {
-  background-color: dodgerblue ;
+  background-color: dodgerblue;
   font-family: Segoe UI, Tahoma, Geneva, Verdana, sans-serif;
 }
 
@@ -35,4 +35,19 @@ main {
 #answer {
   font-size: 24px;
   font-weight: 600;
+}
+
+#reset-game {
+  padding: 12px;
+  border: 2px solid rgb(255, 56, 30);
+  border-radius: 10px;
+  font-size: 18px;
+  font-weight: 700;
+  color: white;
+  background-color: rgb(255, 56, 30);
+}
+
+#reset-game:hover {
+  background-color: rgb(223, 73, 54);
+  border: 2px solid rgb(236, 50, 26)
 }
