@@ -1,6 +1,5 @@
 // Const
 const colorText = document.getElementById('rgb-color');
-let sixColors = generateNcolors(6);
 const sixCircles = document.querySelectorAll('.ball');
 const answerText = document.getElementById('answer');
 const resetButton = document.getElementById('reset-game');
@@ -28,7 +27,7 @@ function generateNcolors(n) {
 }
 
 // functionn to generate circles in a circle path
-function circlesInRadialPath() {
+function circlesInRadialPath(colors) {
   const numberOfCircles = sixCircles.length;
   const side = 600;
   const R = 200;
@@ -37,7 +36,7 @@ function circlesInRadialPath() {
   for (let i = 0; i < numberOfCircles; i += 1) {
     sixCircles[i].setAttribute('cx', side / 2 + R * Math.sin(angle));
     sixCircles[i].setAttribute('cy', side / 2 - R * Math.cos(angle));
-    sixCircles[i].setAttribute('fill', `rgb${sixColors[i]}`);
+    sixCircles[i].setAttribute('fill', `rgb${colors[i]}`);
     angle += 2 * pi / numberOfCircles;
   }
 }
@@ -57,9 +56,6 @@ function changeCircleId(color) {
     }
   }
 }
-
-// generate circles in a circle path
-circlesInRadialPath();
 
 // function to verify if the target has id aswer
 function isAnswer(eventoDeOrigem) {
@@ -85,6 +81,7 @@ function resetGame() {
   let numberForColor = randomNumber(0, 5);
   let colorToFind = sixColors[numberForColor];
   colorText.innerText = colorToFind;
+  answerText.innerText = 'Escolha uma cor';
   changeCirclesColors();
   changeCircleId(colorToFind);
 }
@@ -93,6 +90,11 @@ function resetGame() {
 resetButton.addEventListener('click', resetGame);
 
 window.onload = () => {
+  let sixColors = generateNcolors(6);
+
+  circlesInRadialPath(sixColors);
+  addEventToCircles();
+
   let numberForColor = randomNumber(0, 5);
   let colorToFind = sixColors[numberForColor];
   colorText.innerText = colorToFind;
@@ -100,5 +102,4 @@ window.onload = () => {
   changeCircleId(colorToFind);
 
   answerText.innerText = 'Escolha uma cor';
-  addEventToCircles();
 }
