@@ -42,16 +42,16 @@ function addEventClick() {
           // console.log('Função click foi adicionada ao elemento ' + index);
           // Ao clicar no elemento, roda função que compara se o texto dentro do rgb-color é igual ao backgroundColor do Elemento.
           const propriedadeDoElemento = event.target.style.backgroundColor;
-          if (propriedadeDoElemento === elementoDiv.innerText) {
+          if (propriedadeDoElemento === elementoDiv.innerHTML) {
             // console.log('É IGUAL!!!'); // [DEBUG]
             elementoResult.innerHTML = 'Acertou!';
             // resetarJogo();
-            var manipularPonto = 'adicionar';
+            // var manipularPonto = 'adicionar';
             // placar(manipularPonto);
           } else {
             // console.log('NÃO É IGUAL!!!'); // [DEBUG]
             elementoResult.innerHTML = 'Errou! Tente novamente!';
-            var manipularPonto = 'remover';
+            // var manipularPonto = 'remover';
             // placar(manipularPonto);
           }
           // Deve-se incrementar 3 pontos a cada acerto no Placar, caso a cor seja acertada"
