@@ -44,15 +44,15 @@ function addEventClick() {
           const propriedadeDoElemento = event.target.style.backgroundColor;
           if (propriedadeDoElemento === elementoDiv.innerText) {
             // console.log('É IGUAL!!!'); // [DEBUG]
-            elementoResult.innerText = 'Acertou!';
+            elementoResult.innerHTML = 'Acertou!';
             // resetarJogo();
             var manipularPonto = 'adicionar';
-            placar(manipularPonto);
+            // placar(manipularPonto);
           } else {
             // console.log('NÃO É IGUAL!!!'); // [DEBUG]
-            elementoResult.innerText = 'Errou! Tente novamente!';
+            elementoResult.innerHTML = 'Errou! Tente novamente!';
             var manipularPonto = 'remover';
-            placar(manipularPonto);
+            // placar(manipularPonto);
           }
           // Deve-se incrementar 3 pontos a cada acerto no Placar, caso a cor seja acertada"
         });
@@ -62,7 +62,7 @@ addEventClick();
 
 function resetarJogo() {
   const elementoResult = document.getElementById('answer');
-  elementoResult.innerText = 'Escolha uma cor';
+  elementoResult.innerHTML = 'Escolha uma cor';
   geraCor();
   selecionaElemento();
 }
