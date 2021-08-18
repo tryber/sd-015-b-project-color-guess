@@ -8,10 +8,10 @@ function randomNumberGenerator(limit) {
 
 function addScorePoints() {
   const scoreBoard = document.getElementById('score');
-  let score = Number(scoreBoard.innerText);
-  newScore = score + 3;
+  const score = Number(scoreBoard.innerText);
+  const newScore = score + 3;
   scoreBoard.innerText = newScore;
-};
+}
 
 function colorGuessVerify(event) {
   const gameColorElement = document.getElementById('rgb-color');
@@ -44,7 +44,7 @@ function createColorDiv(color) {
   const div = document.createElement('div');
   div.className = 'ball';
   div.style.backgroundColor = color;
-  colorsContainer.appendChild(div)
+  colorsContainer.appendChild(div);
   div.addEventListener('click', colorGuessVerify);
 }
 
@@ -55,23 +55,23 @@ function createNColorDivs(divNumbers) {
 }
 
 function getNewColorList() {
-  let colorList = [];
+  const colorList = [];
   const colorDivs = document.getElementsByClassName('ball');
-  for (let colorDiv of colorDivs) {
-    let color = colorDiv.style.backgroundColor.slice(3);
+  for (const colorDiv of colorDivs) {
+    const color = colorDiv.style.backgroundColor.slice(3);
     colorList.push(color);
   }
   return colorList;
 }
 
 function sortNewColor() {
-  let colorList = getNewColorList();
+  const colorList = getNewColorList();
   const randomNumber = randomNumberGenerator(5);
   return colorList[randomNumber];
 }
 
 function setNewColor(newColor) {
-  let awnserColor = document.getElementById('rgb-color');
+  const awnserColor = document.getElementById('rgb-color');
   awnserColor.innerText = newColor;
 }
 
