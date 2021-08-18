@@ -36,7 +36,6 @@ function addEventClick() {
             // console.log('NÃO É IGUAL!!!'); // [DEBUG]
             elementoResult.innerText = 'Errou! Tente novamente!';
           }
-          
           // Deve-se incrementar 3 pontos a cada acerto no Placar, caso a cor seja acertada"
         });
     }
