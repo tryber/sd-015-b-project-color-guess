@@ -19,6 +19,11 @@ function colorGuessVerify(event) {
   }
 }
 
+function resetAnswerText () {
+  const result = document.getElementById("answer");
+  result.innerText = "Escolha uma cor";
+}
+
 function createColor() {
   const number1 = randomNumberGenerator(255);
   const number2 = randomNumberGenerator(255);
@@ -37,8 +42,42 @@ function createColorDiv(color) {
 
 function createNColorDivs(divNumbers) {
   for (let index = 0; index < divNumbers; index += 1) {
-    createColorDiv(createColor())
+    createColorDiv(createColor());
   }
+}
+
+function getNewColorList() {
+  let colorList = [];
+  const colorDivs = document.getElementsByClassName("ball");
+  for (let colorDiv of colorDivs) {
+    let color = colorDiv.style.backgroundColor.slice(3);
+    colorList.push(color);
+  }
+  return colorList;
+}
+
+function sortNewColor() {
+  let colorList = getNewColorList();
+  const randomNumber = randomNumberGenerator(5);
+  return colorList[randomNumber];
+}
+
+function setNewColor(newColor) {
+  let awnserColor = document.getElementById("rgb-color");
+  awnserColor.innerText = newColor;
+}
+
+function resetColorDivs() {
+  const colorsContainer = document.querySelector(".divs-center");
+  colorsContainer.innerHTML = "";
+  createNColorDivs(6);
+  let newColor = sortNewColor();
+  setNewColor(newColor);
+}
+
+function resetGame() {
+  resetColorDivs();
+  resetAnswerText();
 }
 
 function createAllColorDivs() {
@@ -49,6 +88,12 @@ function createAllColorDivs() {
   colorsContainer.style.width = (60 * divNumbers) + "px" // 60 = div width + margin
 }
 
+function setButtonsEventListeners() {
+  const resetButtom = document.getElementById("reset-game");
+  resetButtom.addEventListener("click", resetGame);
+}
+
 window.onload = function () {
-  createAllColorDivs()
+  createAllColorDivs();
+  setButtonsEventListeners();
 }
