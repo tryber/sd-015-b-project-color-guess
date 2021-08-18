@@ -22,4 +22,9 @@ selecionaElemento();
 
 // Adiciona ação a botões:
 const botaoDeReset = document.getElementById('reset-game');
-botaoDeReset.addEventListener('click', geraCor);
+botaoDeReset.addEventListener('click', function () {
+    // Quando clicar no botão de Reset
+    // Chama-se a função que troca de Cor.
+    geraCor();
+
+});
