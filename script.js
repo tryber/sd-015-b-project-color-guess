@@ -4,6 +4,7 @@ let allColors = [];
 const answer = document.getElementById('answer');
 const resetButton = document.getElementById('reset-game');
 
+// creates one random color, returns rgb as array
 function randomizeColors() {
   const firstRandomNumber = Math.floor(Math.random() * 255);
   const secondRandomNumber = Math.floor(Math.random() * 255);
@@ -12,12 +13,14 @@ function randomizeColors() {
   return randomArray;
 }
 
+// creates challenge color from all 6 randomly created colors
 function addChallengeColor() {
   const randomInt = Math.floor(Math.random() * 6);
   const challengeColor = allColors[randomInt];
   rgbColor.innerText = challengeColor;
 }
 
+// array for collecting each randomly created color in rgb format
 function collectColors(color) {
   const colorFormat = `(${color[0]}, ${color[1]}, ${color[2]})`;
   allColors.push(colorFormat);
@@ -26,6 +29,7 @@ function collectColors(color) {
   }
 }
 
+// on start, create 6 random colors, select one color for guessing, remove any selected color from previous game
 function initialize() {
   allColors = [];
   for (let counter = 0; counter < balls.length; counter += 1) {
@@ -39,6 +43,7 @@ function initialize() {
 
 window.onload = initialize;
 
+// checks if selected ball's background color is equal to challenge color
 function checkAnswer(ball) {
   const ballColor = ball.style.background;
   const challengeColor = `rgb${rgbColor.innerText}`;
@@ -49,6 +54,7 @@ function checkAnswer(ball) {
   }
 }
 
+// clicking on a ball selects it and calls checkAnswer
 function addSelected(originEvent) {
   const selectedBall = originEvent.target;
   for (let counter = 0; counter < balls.length; counter += 1) {
