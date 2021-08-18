@@ -10,13 +10,20 @@ let B = 0;
 let drawnColor = '';
 let placar = 0;
 
-containerBalls.addEventListener('click', checkResult);
-resetGame.addEventListener('click', newGame);
-
 function generateRandomColor() {
   R = Math.floor(Math.random() * 256);
   G = Math.floor(Math.random() * 256);
   B = Math.floor(Math.random() * 256);
+}
+
+function newGame() {
+  for (let index = 0; index < balls.length; index += 1) {
+    generateRandomColor();
+    balls[index].style.backgroundColor = `rgb(${R},${G},${B})`;
+  }
+  drawnColor = balls[Math.floor(Math.random() * balls.length)].style.backgroundColor;
+  rgbColor.innerText = drawnColor;
+  answer.innerText = 'Escolha uma cor';
 }
 
 newGame();
@@ -31,12 +38,5 @@ function checkResult(event) {
   }
 }
 
-function newGame() {
-  for (let index = 0; index < balls.length; index += 1) {
-    generateRandomColor();
-    balls[index].style.backgroundColor = `rgb(${R},${G},${B})`;
-  }
-  drawnColor = balls[Math.floor(Math.random() * balls.length)].style.backgroundColor;
-  rgbColor.innerText = drawnColor;
-  answer.innerText = 'Escolha uma cor';
-}
+containerBalls.addEventListener('click', checkResult);
+resetGame.addEventListener('click', newGame);
