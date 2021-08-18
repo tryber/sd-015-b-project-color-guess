@@ -1,0 +1,14 @@
+body {
+  text-align: center;
+}
+.ball {
+  background-color: white;
+  width: 70px;
+  height: 70px;
+  border: 2px solid black;
+  display: inline-block;
+  border-radius: 50px;
+}
+.buttons {
+    display: block;
+}
