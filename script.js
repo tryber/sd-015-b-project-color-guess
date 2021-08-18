@@ -1,8 +1,9 @@
 // Const
 const colorText = document.getElementById('rgb-color');
-const sixColors = generateNcolors(6);
+let sixColors = generateNcolors(6);
 const sixCircles = document.querySelectorAll('.ball');
 const answerText = document.getElementById('answer');
+const resetButton = document.getElementById('reset-game');
 
 // function to generate integer number in range [mín, máx]
 function randomNumber(min, max) {
@@ -41,6 +42,22 @@ function circlesInRadialPath() {
   }
 }
 
+// function to change colors of circles
+function changeCirclesColors() {
+  for (let i = 0; i < sixCircles.length; i += 1) {
+    sixCircles[i].setAttribute('fill', `rgb${sixColors[i]}`);
+  }
+}
+
+// function to change id of one circle to answerColor
+function changeCircleId(color) {
+  for (let i = 0; i < sixCircles.length; i += 1) {
+    if (sixCircles[i].getAttribute('fill') === `rgb${color}`) {
+      sixCircles[i].setAttribute('id', 'answerColor');
+    }
+  }
+}
+
 // generate circles in a circle path
 circlesInRadialPath();
 
@@ -61,15 +78,27 @@ function addEventToCircles() {
   }
 }
 
-window.onload = () => {
-  const numberForColor = randomNumber(0, 5);
-  const colorToFind = sixColors[numberForColor];
+// function to reset the game
+function resetGame() {
+  document.getElementById('answerColor').id = '';
+  sixColors = generateNcolors(6);
+  let numberForColor = randomNumber(0, 5);
+  let colorToFind = sixColors[numberForColor];
   colorText.innerText = colorToFind;
-  for (let i = 0; i < sixCircles.length; i += 1) {
-    if (sixCircles[i].getAttribute('fill') === `rgb${colorToFind}`) {
-      sixCircles[i].setAttribute('id', 'answerColor');
-    } 
-  }
+  changeCirclesColors();
+  changeCircleId(colorToFind);
+}
+
+// addEventListener to button resetGame
+resetButton.addEventListener('click', resetGame);
+
+window.onload = () => {
+  let numberForColor = randomNumber(0, 5);
+  let colorToFind = sixColors[numberForColor];
+  colorText.innerText = colorToFind;
+
+  changeCircleId(colorToFind);
+
   answerText.innerText = 'Escolha uma cor';
   addEventToCircles();
 }
