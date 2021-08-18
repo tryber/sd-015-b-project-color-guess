@@ -7,29 +7,29 @@ function randomNumberGenerator(limit) {
 }
 
 function addScorePoints() {
-  const scoreBoard = document.getElementById("score");
-  let score = Number(scoreBoard.innerText)
-  newScore = score + 3
+  const scoreBoard = document.getElementById('score');
+  let score = Number(scoreBoard.innerText);
+  newScore = score + 3;
   scoreBoard.innerText = newScore;
 };
 
 function colorGuessVerify(event) {
-  const gameColorElement = document.getElementById("rgb-color");
+  const gameColorElement = document.getElementById('rgb-color');
   const div = event.target;
-  const result = document.getElementById("answer");
+  const result = document.getElementById('answer');
   const divColor = div.style.backgroundColor;
-  const gameColor = "rgb" + gameColorElement.innerText;
+  const gameColor = 'rgb' + gameColorElement.innerText;
   if (divColor === gameColor) {
-    result.innerText = "Acertou!";
+    result.innerText = 'Acertou!';
     addScorePoints();
   } else {
-    result.innerText = "Errou! Tente novamente!";
+    result.innerText = 'Errou! Tente novamente!';
   }
 }
 
 function resetAnswerText () {
-  const result = document.getElementById("answer");
-  result.innerText = "Escolha uma cor";
+  const result = document.getElementById('answer');
+  result.innerText = 'Escolha uma cor';
 }
 
 function createColor() {
@@ -40,12 +40,12 @@ function createColor() {
 }
 
 function createColorDiv(color) {
-  const colorsContainer = document.querySelector(".divs-center");
-  const div = document.createElement("div");
-  div.className = "ball";
+  const colorsContainer = document.querySelector('.divs-center');
+  const div = document.createElement('div');
+  div.className = 'ball';
   div.style.backgroundColor = color;
   colorsContainer.appendChild(div)
-  div.addEventListener("click", colorGuessVerify);
+  div.addEventListener('click', colorGuessVerify);
 }
 
 function createNColorDivs(divNumbers) {
@@ -56,7 +56,7 @@ function createNColorDivs(divNumbers) {
 
 function getNewColorList() {
   let colorList = [];
-  const colorDivs = document.getElementsByClassName("ball");
+  const colorDivs = document.getElementsByClassName('ball');
   for (let colorDiv of colorDivs) {
     let color = colorDiv.style.backgroundColor.slice(3);
     colorList.push(color);
@@ -71,13 +71,13 @@ function sortNewColor() {
 }
 
 function setNewColor(newColor) {
-  let awnserColor = document.getElementById("rgb-color");
+  let awnserColor = document.getElementById('rgb-color');
   awnserColor.innerText = newColor;
 }
 
 function resetColorDivs() {
-  const colorsContainer = document.querySelector(".divs-center");
-  colorsContainer.innerHTML = "";
+  const colorsContainer = document.querySelector('.divs-center');
+  colorsContainer.innerHTML = '';
   createNColorDivs(6);
   let newColor = sortNewColor();
   setNewColor(newColor);
@@ -89,16 +89,16 @@ function resetGame() {
 }
 
 function createAllColorDivs() {
-  const divNumbers = 6
-  createColorDiv("rgb(168, 34, 1)")
+  const divNumbers = 6;
+  createColorDiv('rgb(168, 34, 1)');
   createNColorDivs(divNumbers - 1);  
-  const colorsContainer = document.querySelector(".divs-center");
-  colorsContainer.style.width = (60 * divNumbers) + "px" // 60 = div width + margin
+  const colorsContainer = document.querySelector('.divs-center');
+  colorsContainer.style.width = (60 * divNumbers) + 'px';// 60 = div width + margin
 }
 
 function setButtonsEventListeners() {
-  const resetButtom = document.getElementById("reset-game");
-  resetButtom.addEventListener("click", resetGame);
+  const resetButtom = document.getElementById('reset-game');
+  resetButtom.addEventListener('click', resetGame);
 }
 
 window.onload = function () {
