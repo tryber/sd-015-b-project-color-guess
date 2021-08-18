@@ -18,6 +18,20 @@ function selecionaElemento() {
   // console.log(randomElement); // [DEBUG]
 }
 
+// function placar(manipularPonto) {
+//   const textoPlacar = document.getElementById('score');
+//   console.log("FUNÇÃO PLACAR FOI CHAMADA");
+//   console.log(manipularPonto);
+//   textoPlacar.innerText += 3;
+//   if (manipularPonto === 'adicionar') {
+//     console.log("FUNÇÃO AUMENTAR PONTO, OK!!!");
+//   } else if (manipularPonto === 'diminuir') {
+//     console.log("FUNÇÃO DIMINUIR PONTO, OK!!!");
+//     textoPlacar.innerText -= 1;
+//   }
+//   // console.log(textoPlacar.innerText); // [DEBUG]
+// }
+
 function addEventClick() {
     // Adiciona evento de clique na class ball quando a página é carregada
     const elementosColoridos = document.getElementsByClassName('ball');
@@ -31,10 +45,14 @@ function addEventClick() {
           if (propriedadeDoElemento === elementoDiv.innerText) {
             // console.log('É IGUAL!!!'); // [DEBUG]
             elementoResult.innerText = 'Acertou!';
-            resetarJogo();
+            // resetarJogo();
+            var manipularPonto = 'adicionar';
+            placar(manipularPonto);
           } else {
             // console.log('NÃO É IGUAL!!!'); // [DEBUG]
             elementoResult.innerText = 'Errou! Tente novamente!';
+            var manipularPonto = 'remover';
+            placar(manipularPonto);
           }
           // Deve-se incrementar 3 pontos a cada acerto no Placar, caso a cor seja acertada"
         });
