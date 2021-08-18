@@ -1,3 +1,7 @@
+#score {
+  margin-right: 10px;
+}
+
 .ball {
   width: 80px;
   height: 80px;
@@ -12,4 +16,9 @@
 
 .selected {
   border: 5px dashed black;
+}
+
+#answer {
+  font-size: 24px;
+  font-weight: 600;
 }

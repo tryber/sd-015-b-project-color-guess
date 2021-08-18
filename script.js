@@ -3,6 +3,8 @@ const rgbColor = document.getElementById('rgb-color');
 let allColors = [];
 const answer = document.getElementById('answer');
 const resetButton = document.getElementById('reset-game');
+const score = document.getElementById('score');
+let newScore = 0;
 
 // creates one random color, returns rgb as array
 function randomizeColors() {
@@ -43,6 +45,16 @@ function initialize() {
 
 window.onload = initialize;
 
+function changeScore(userResult) {
+  if (userResult) {
+    newScore += 3;
+    score.innerText = `Placar: ${newScore}`;
+  } else {
+    newScore = 0;
+    score.innerText = `Placar: ${newScore}`;
+  }
+}
+
 // checks if selected ball's background color is equal to challenge color
 function checkAnswer(ball) {
   const ballColor = ball.style.background;
@@ -52,6 +64,7 @@ function checkAnswer(ball) {
   } else {
     answer.innerText = 'Errou! Tente novamente!';
   }
+  changeScore(ballColor === challengeColor);
 }
 
 // clicking on a ball selects it and calls checkAnswer
