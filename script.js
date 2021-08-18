@@ -40,10 +40,12 @@ function circlesInRadialPath() {
   }
 }
 
+// generate circles in a circle path
+circlesInRadialPath();
+
 window.onload = () => {
-  const numberForColor = randomNumber(0, 6);
+  const numberForColor = randomNumber(0, 5);
   const colorToFind = sixColors[numberForColor];
   colorText.innerText = colorToFind;
 
-  circlesInRadialPath();
 }
