@@ -1,6 +1,7 @@
 // Const
 const colorText = document.getElementById('rgb-color');
 const sixColors = generateNcolors(6);
+const sixCircles = document.querySelectorAll('.ball');
 
 // function to generate integer number in range [mín, máx]
 function randomNumber(min, max) {
@@ -24,8 +25,25 @@ function generateNcolors(n) {
   return aux;
 }
 
+// functionn to generate circles in a circle path
+function circlesInRadialPath() {
+  const numberOfCircles = sixCircles.length;
+  const side = 600;
+  const R = 200;
+  const pi = Math.PI;
+  let angle = 0;
+  for (let i = 0; i < numberOfCircles; i += 1) {
+    sixCircles[i].setAttribute('cx', side / 2 + R * Math.sin(angle));
+    sixCircles[i].setAttribute('cy', side / 2 - R * Math.cos(angle));
+    sixCircles[i].setAttribute('fill', `rgb${sixColors[i]}`);
+    angle += 2 * pi / numberOfCircles;
+  }
+}
+
 window.onload = () => {
   const numberForColor = randomNumber(0, 6);
   const colorToFind = sixColors[numberForColor];
   colorText.innerText = colorToFind;
+
+  circlesInRadialPath();
 }
