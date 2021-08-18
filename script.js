@@ -17,6 +17,9 @@ function selecionaElemento() {
   const valorRGB = elementosColoridos[randomElement].style.backgroundColor;
   elementoDiv.innerText = valorRGB;
   // console.log(randomElement); // [DEBUG]
-
 }
 selecionaElemento();
+
+// Adiciona ação a botões:
+const botaoDeReset = document.getElementById('reset-game');
+botaoDeReset.addEventListener('click', geraCor);
