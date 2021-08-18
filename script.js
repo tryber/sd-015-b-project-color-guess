@@ -6,6 +6,19 @@ function randomNumberGenerator(limit) {
   return roundNumber;
 }
 
+function colorGuessVerify(event) {
+  const gameColorElement = document.getElementById("rgb-color");
+  const div = event.target;
+  const result = document.getElementById("answer");
+  const divColor = div.style.backgroundColor;
+  const gameColor = "rgb" + gameColorElement.innerText;
+  if (divColor === gameColor) {
+    result.innerText = "Acertou!";
+  } else {
+    result.innerText = "Errou! Tente novamente!";
+  }
+}
+
 function createColor() {
   const number1 = randomNumberGenerator(255);
   const number2 = randomNumberGenerator(255);
@@ -19,6 +32,7 @@ function createColorDiv(color) {
   div.className = "ball";
   div.style.backgroundColor = color;
   colorsContainer.appendChild(div)
+  div.addEventListener("click", colorGuessVerify);
 }
 
 function createNColorDivs(divNumbers) {
