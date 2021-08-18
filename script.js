@@ -6,6 +6,13 @@ function randomNumberGenerator(limit) {
   return roundNumber;
 }
 
+function addScorePoints() {
+  const scoreBoard = document.getElementById("score");
+  let score = Number(scoreBoard.innerText)
+  newScore = score + 3
+  scoreBoard.innerText = newScore;
+};
+
 function colorGuessVerify(event) {
   const gameColorElement = document.getElementById("rgb-color");
   const div = event.target;
@@ -14,6 +21,7 @@ function colorGuessVerify(event) {
   const gameColor = "rgb" + gameColorElement.innerText;
   if (divColor === gameColor) {
     result.innerText = "Acertou!";
+    addScorePoints();
   } else {
     result.innerText = "Errou! Tente novamente!";
   }
