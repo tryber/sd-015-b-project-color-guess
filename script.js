@@ -3,10 +3,12 @@ const rgbColor = document.getElementById('rgb-color');
 const containerBalls = document.getElementById('container-balls');
 const answer = document.getElementById('answer');
 const resetGame = document.getElementById('reset-game');
+const score = document.getElementById('score');
 let R = 0;
 let G = 0;
 let B = 0;
 let drawnColor = '';
+let placar = 0;
 
 containerBalls.addEventListener('click', checkResult);
 resetGame.addEventListener('click', newGame);
@@ -22,6 +24,8 @@ newGame();
 function checkResult(event) {
   if (event.target.style.backgroundColor === drawnColor) {
     answer.innerText = 'Acertou!';
+    placar += 3;
+    score.innerText = `placar: ${placar}`;
   } else {
     answer.innerText = 'Errou! Tente novamente!';
   }
