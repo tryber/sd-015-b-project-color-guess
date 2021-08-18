@@ -2,7 +2,7 @@
 const colorText = document.getElementById('rgb-color');
 const sixColors = generateNcolors(6);
 const sixCircles = document.querySelectorAll('.ball');
-const answerText = document.getElementById('resposta');
+const answerText = document.getElementById('answer');
 
 // function to generate integer number in range [mín, máx]
 function randomNumber(min, max) {
@@ -47,7 +47,7 @@ circlesInRadialPath();
 // function to verify if the target has id aswer
 function isAnswer(eventoDeOrigem) {
   const element = eventoDeOrigem.target;
-  if (element.id === 'answer') {
+  if (element.id === 'answerColor') {
     answerText.innerText = 'Acertou!'
   } else {
     answerText.innerText = 'Errou! Tente novamente!'
@@ -65,12 +65,11 @@ window.onload = () => {
   const numberForColor = randomNumber(0, 5);
   const colorToFind = sixColors[numberForColor];
   colorText.innerText = colorToFind;
-
   for (let i = 0; i < sixCircles.length; i += 1) {
     if (sixCircles[i].getAttribute('fill') === `rgb${colorToFind}`) {
-      sixCircles[i].setAttribute('id', 'answer');
+      sixCircles[i].setAttribute('id', 'answerColor');
     } 
   }
-
+  answerText.innerText = 'Escolha uma cor';
   addEventToCircles();
 }
