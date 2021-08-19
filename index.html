@@ -3,19 +3,20 @@
   <head>
     <meta charset="UTF-8">
     <title>Color Guess</title>
+    <link rel="stylesheet" href="style.css">
   </head>
   <body>
     <h1 id="title">Qual é essa COR?</h1>
     <main>
       <h2 id="rgb-color"></h2>
-      <svg width="600" height="600">
-        <circle class="ball" r="50"></circle>
-        <circle class="ball" r="50"></circle>
-        <circle class="ball" r="50"></circle>
-        <circle class="ball" r="50"></circle>
-        <circle class="ball" r="50"></circle>
-        <circle class="ball" r="50"></circle>
-      </svg>
+      <div class="container">
+        <div class="ball"></div>
+        <div class="ball"></div>
+        <div class="ball"></div>
+        <div class="ball"></div>
+        <div class="ball"></div>
+        <div class="ball"></div>
+      </div>
       <button id="reset-game">Reset Game</button>
       <h2 id="answer"></h2>
     </main>

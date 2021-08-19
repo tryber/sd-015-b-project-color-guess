@@ -28,31 +28,23 @@ function generateNcolors(n) {
 
 // functionn to generate circles in a circle path
 function circlesInRadialPath(colors) {
-  const numberOfCircles = sixCircles.length;
-  const side = 600;
-  const R = 200;
-  const pi = Math.PI;
-  let angle = 0;
-  for (let i = 0; i < numberOfCircles; i += 1) {
-    sixCircles[i].setAttribute('cx', side / 2 + R * Math.sin(angle));
-    sixCircles[i].setAttribute('cy', side / 2 - R * Math.cos(angle));
-    sixCircles[i].setAttribute('fill', `rgb${colors[i]}`);
-    angle += 2 * pi / numberOfCircles;
+  for (let i = 0; i < sixCircles.length; i += 1) {
+    sixCircles[i].style.backgroundColor = `rgb${colors[i]}`;
   }
 }
 
 // function to change colors of circles
 function changeCirclesColors() {
   for (let i = 0; i < sixCircles.length; i += 1) {
-    sixCircles[i].setAttribute('fill', `rgb${sixColors[i]}`);
+    sixCircles[i].style.backgroundColor = `rgb${sixColors[i]}`;
   }
 }
 
 // function to change id of one circle to answerColor
 function changeCircleId(color) {
   for (let i = 0; i < sixCircles.length; i += 1) {
-    if (sixCircles[i].getAttribute('fill') === `rgb${color}`) {
-      sixCircles[i].setAttribute('id', 'answerColor');
+    if (sixCircles[i].style.backgroundColor === `rgb${color}`) {
+      sixCircles[i].id = 'answerColor';
     }
   }
 }
