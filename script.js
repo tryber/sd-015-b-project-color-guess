@@ -1,8 +1,15 @@
+// Vars
+let score = 0;
+
 // Const
 const colorText = document.getElementById('rgb-color');
 const sixCircles = document.querySelectorAll('.ball');
 const answerText = document.getElementById('answer');
 const resetButton = document.getElementById('reset-game');
+const scoreElement = document.getElementById('score');
+
+// see score
+scoreElement.innerText = score;
 
 // function to generate integer number in range [mín, máx]
 function randomNumber(min, max) {
@@ -47,6 +54,8 @@ function isAnswer(eventoDeOrigem) {
   const element = eventoDeOrigem.target;
   if (element.id === 'answerColor') {
     answerText.innerText = 'Acertou!';
+    score += 3;
+    scoreElement.innerText = score;
   } else {
     answerText.innerText = 'Errou! Tente novamente!';
   }
