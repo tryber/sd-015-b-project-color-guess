@@ -9,7 +9,7 @@ function randomNumber(min, max) {
   return Math.floor(Math.random() * (max - min + 1)) + min;
 }
 
-//function to generate random rgb
+// function to generate random rgb
 function generateRandomRGB() {
   const r = randomNumber(0, 255);
   const g = randomNumber(0, 255);
@@ -27,16 +27,9 @@ function generateNcolors(n) {
 }
 
 // functionn to generate circles in a circle path
-function circlesInRadialPath(colors) {
+function changeCirclesColors(colors) {
   for (let i = 0; i < sixCircles.length; i += 1) {
     sixCircles[i].style.backgroundColor = `rgb${colors[i]}`;
-  }
-}
-
-// function to change colors of circles
-function changeCirclesColors() {
-  for (let i = 0; i < sixCircles.length; i += 1) {
-    sixCircles[i].style.backgroundColor = `rgb${sixColors[i]}`;
   }
 }
 
@@ -53,9 +46,9 @@ function changeCircleId(color) {
 function isAnswer(eventoDeOrigem) {
   const element = eventoDeOrigem.target;
   if (element.id === 'answerColor') {
-    answerText.innerText = 'Acertou!'
+    answerText.innerText = 'Acertou!';
   } else {
-    answerText.innerText = 'Errou! Tente novamente!'
+    answerText.innerText = 'Errou! Tente novamente!';
   }
 }
 
@@ -69,12 +62,12 @@ function addEventToCircles() {
 // function to reset the game
 function resetGame() {
   document.getElementById('answerColor').id = '';
-  sixColors = generateNcolors(6);
-  let numberForColor = randomNumber(0, 5);
-  let colorToFind = sixColors[numberForColor];
+  const sixColors = generateNcolors(6);
+  const numberForColor = randomNumber(0, 5);
+  const colorToFind = sixColors[numberForColor];
   colorText.innerText = colorToFind;
   answerText.innerText = 'Escolha uma cor';
-  changeCirclesColors();
+  changeCirclesColors(sixColors);
   changeCircleId(colorToFind);
 }
 
@@ -82,13 +75,13 @@ function resetGame() {
 resetButton.addEventListener('click', resetGame);
 
 window.onload = () => {
-  let sixColors = generateNcolors(6);
+  const sixColors = generateNcolors(6);
 
-  circlesInRadialPath(sixColors);
+  changeCirclesColors(sixColors);
   addEventToCircles();
 
-  let numberForColor = randomNumber(0, 5);
-  let colorToFind = sixColors[numberForColor];
+  const numberForColor = randomNumber(0, 5);
+  const colorToFind = sixColors[numberForColor];
   colorText.innerText = colorToFind;
 
   changeCircleId(colorToFind);
