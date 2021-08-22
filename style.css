@@ -12,6 +12,8 @@ main {
 
 #ball-collection {
   display: flex;
+  width: 288px;
+  flex-wrap: wrap;
 }
 
 #ball-collection div {
