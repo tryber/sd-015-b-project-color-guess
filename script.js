@@ -2,6 +2,7 @@ const balls = [...document.getElementsByClassName('ball')];
 const p = document.getElementById('rgb-color');
 const h2 = document.getElementById('answer');
 const btnReset = document.getElementById('reset-game');
+const score = document.getElementById('score');
 
 function numberRandom(value) {
   const number = Math.floor(Math.random() * (value + 1));
@@ -33,10 +34,17 @@ function createBallWinner() {
   balls[winningNumber].style.backgroundColor = `rgb${textColor}`;
 }
 
+function scoreCalcultion() {
+  let result = parseInt(score.innerText, 10);
+  result += 3;
+  score.innerText = result;
+}
+
 function verifyWinner(event) {
   const targetBall = event.target;
   if (targetBall.style.backgroundColor === `rgb${p.innerText}`) {
     h2.innerText = 'Acertou!';
+    scoreCalcultion();
   } else {
     h2.innerText = 'Errou! Tente novamente!';
   }
