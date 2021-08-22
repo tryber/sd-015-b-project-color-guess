@@ -1,0 +1,28 @@
+body {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+main {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+#ball-collection {
+  display: flex;
+  width: 288px;
+  flex-wrap: wrap;
+}
+
+#ball-collection div {
+  margin: 7px;
+}
+
+.ball {
+  width: 80px;
+  height: 80px;
+  border: 1px solid black;
+  border-radius: 50%;
+}
