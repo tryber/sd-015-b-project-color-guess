@@ -1,6 +1,7 @@
 const balls = [...document.getElementsByClassName('ball')];
 const p = document.getElementById('rgb-color');
 const h2 = document.getElementById('answer');
+const btnReset = document.getElementById('reset-game');
 
 function numberRandom(value) {
   const number = Math.floor(Math.random() * (value + 1));
@@ -48,7 +49,16 @@ function ballsThatListen() {
   });
 }
 
+function newColors() {
+  h2.innerText = 'Escolha uma cor';
+  createTextRgb();
+  colorBalls();
+  createBallWinner();
+  ballsThatListen();
+}
+
 createTextRgb();
 colorBalls();
 createBallWinner();
 ballsThatListen();
+btnReset.addEventListener('click', newColors);
