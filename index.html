@@ -5,14 +5,23 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Color Guess Project!</title>
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
   <main>
     <h1 id="title">
       Tente adivinhar a cor! 
     </h1>
-    <section>
-      <p id="rgb-color">Que cor é essa? (168, 34, 1)</p>
+    <section id="game-container">
+      <h3 id="rgb-color">Que cor é essa?: <span id="color">(168, 34, 1)</span></h3>
+      <section id="color-picker">
+        <div id="color1" class="ball"></div>
+        <div id="color2" class="ball"></div>
+        <div id="color3" class="ball"></div>
+        <div id="color4" class="ball"></div>
+        <div id="color5" class="ball"></div>
+        <div id="color6" class="ball"></div>
+    </section>
     </section>
   </main>
 </body>
