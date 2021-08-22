@@ -16,4 +16,14 @@ function createTextRgb() {
   p.innerText = colorRgb().replace('rgb', '');
 }
 
+function colorBalls() {
+  const balls = [...document.getElementsByClassName('ball')];
+
+  balls.forEach((b) => {
+    const ball = b;
+    ball.style.backgroundColor = colorRgb();
+  });
+}
+
 createTextRgb();
+colorBalls();
