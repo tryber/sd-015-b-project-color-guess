@@ -1,29 +1,54 @@
-function numberRandom() {
-  const number = Math.floor(Math.random() * 256);
+const balls = [...document.getElementsByClassName('ball')];
+const p = document.getElementById('rgb-color');
+const h2 = document.getElementById('answer');
+
+function numberRandom(value) {
+  const number = Math.floor(Math.random() * (value + 1));
   return number;
 }
 
 function colorRgb() {
-  const red = numberRandom();
-  const green = numberRandom();
-  const blue = numberRandom();
-  const rgb = `rgb(${red}, ${green}, ${blue})`;
+  const red = numberRandom(255);
+  const green = numberRandom(255);
+  const blue = numberRandom(255);
+  const rgb = `(${red}, ${green}, ${blue})`;
   return rgb;
 }
 
 function createTextRgb() {
-  const p = document.getElementById('rgb-color');
-  p.innerText = colorRgb().replace('rgb', '');
+  p.innerText = colorRgb();
 }
 
 function colorBalls() {
-  const balls = [...document.getElementsByClassName('ball')];
-
   balls.forEach((b) => {
     const ball = b;
-    ball.style.backgroundColor = colorRgb();
+    ball.style.backgroundColor = `rgb${colorRgb()}`;
+  });
+}
+
+function createBallWinner() {
+  const winningNumber = numberRandom(5);
+  const textColor = p.innerText;
+  balls[winningNumber].style.backgroundColor = `rgb${textColor}`;
+}
+
+function verifyWinner(event) {
+  const targetBall = event.target;
+  if (targetBall.style.backgroundColor === `rgb${p.innerText}`) {
+    h2.innerText = 'Acertou!';
+  } else {
+    h2.innerText = 'Errou! Tente novamente!';
+  }
+}
+
+function ballsThatListen() {
+  balls.forEach((b) => {
+    const ball = b;
+    ball.addEventListener('click', verifyWinner);
   });
 }
 
 createTextRgb();
 colorBalls();
+createBallWinner();
+ballsThatListen();
