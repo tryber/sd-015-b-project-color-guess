@@ -1,5 +1,5 @@
 const showRGB = document.getElementById('rgb-color');
-const level = 100;
+let level = 100;
 const divBalls = document.getElementById('div-balls');
 let score = 0;
 const answer = document.getElementById('answer');
@@ -13,11 +13,11 @@ function scoreShow() {
 function levelLimited(number) {
   let output = 0;
 
-  if (number > 0 && number <= 255) {
+  if (number >= 0 && number <= 255) {
     output = number;
   } else {
-    const newNumberRandom = Math.random() * 254;
-    const newNumber = Math.round(newNumberRandom);
+    const newNumberRandom = Math.random() * 255;
+    const newNumber = Math.floor(newNumberRandom);
     output = newNumber;
   }
 
@@ -26,8 +26,8 @@ function levelLimited(number) {
 
 function colorBall(r, g, b) {
   const ball = document.querySelectorAll('.ball');
-  const correct = Math.random(1) * ball.length;
-  const correctBall = Math.round(correct);
+  const correct = Math.random() * ball.length;
+  const correctBall = Math.floor(correct);
 
   for (let index = 0; index < ball.length; index += 1) {
     const redMath = r * (index + level);
@@ -41,7 +41,7 @@ function colorBall(r, g, b) {
     ball[index].style.backgroundColor = `rgb${colorBallRGB}`;
   }
 
-  ball[correctBall].style.backgroundColor = `rgb(${r}, ${g}, ${b})`;
+  ball[correctBall].style.backgroundColor = showRGB.innerText;
 }
 
 function randomRGB() {
@@ -69,6 +69,7 @@ function addBall(number) {
 }
 
 addBall(6);
+randomRGB();
 
 function selectBallMSG(ball) {
   if (ball.style.backgroundColor === showRGB.innerText) {
@@ -98,7 +99,16 @@ function startGame() {
 
 const buttonResetColors = document.getElementById('reset-game');
 buttonResetColors.addEventListener('click', startGame);
+const buttonLevelUp = document.getElementById('level-up');
 
-window.onload = function start() {
-  randomRGB();
-};
+function levelUp() {
+  if (level > 0) {
+    level -= 10;
+    addBall(1);
+    randomRGB();
+  } else {
+    buttonLevelUp.innerText = 'Dificuldade máxima';
+  }
+}
+
+buttonLevelUp.addEventListener('click', levelUp);
