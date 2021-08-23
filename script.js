@@ -1,9 +1,8 @@
 const guesses = document.querySelectorAll('.ball');
 const answerText = document.getElementById('answer');
-const randomBall = Math.floor(Math.random() * 6);
 const resetBtn = document.getElementById('reset-game');
 const answerTextDisplay = document.getElementById('color');
-const resposta = document.getElementById('resposta');
+const counter = document.getElementById('score');
 
 let answer = '';
 
@@ -20,35 +19,54 @@ function generateGame() {
     guesses[i].style.background = generateRandomColor();
   }
   answer = generateRandomColor();
+  const randomBall = Math.floor(Math.random() * 6);
   guesses[randomBall].style.background = answer;
-  answerTextDisplay.innerText += answer;
-
-  resposta.innerText += answer;
-  resposta.style.background = answer;
+  answerTextDisplay.innerText = `Que cor é essa: ${answer}`;
 }
 
 generateGame();
 
+let points = 0;
+
 function checkGuess(event) {
-  const guess = event.target.style.background;
-  if (guess === answer) {
+  const guessBackground = event.target.style.background;
+  if (guessBackground === answer) {
     answerText.innerText = 'Acertou!';
+    points += 3;
+    counter.innerText = points;
+    for (let i = 0; i < guesses.length; i += 1) {
+      guesses[i].removeEventListener('click', checkGuess);
+    }
   } else {
     answerText.innerText = 'Errou! Tente novamente!';
   }
 }
 
+// function selectBall(event) {
+//   const clickedBall = event.target;
+//   const previousBall = document.getElementsByClassName('selected');
+//   console.log(previousBall);
+//   if (previousBall.length === 0) {
+//     clickedBall.classList.add('selected');
+//   } else {
+//     previousBall[0].classList.remove('selected');
+//     clickedBall.classList.add('selected');
+//   }
+// }
+
 for (let i = 0; i < guesses.length; i += 1) {
   guesses[i].addEventListener('click', checkGuess);
+  // guesses[i].addEventListener('click', selectBall);
 }
 
 function resetGame() {
   generateGame();
   answerText.innerText = 'Escolha uma cor';
-  const newAnser = generateRandomColor();
-  answerTextDisplay.innerText = newAnser;
-  resposta.innerText = newAnser;
-  resposta.style.background = newAnser;
+  for (let i = 0; i < guesses.length; i += 1) {
+    guesses[i].addEventListener('click', checkGuess);
+  }
+  // const previousBall = document.getElementsByClassName('selected');
+  // previousBall.classList.remove('selected');
 }
 
 resetBtn.addEventListener('click', resetGame);

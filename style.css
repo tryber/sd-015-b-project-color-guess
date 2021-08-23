@@ -45,3 +45,7 @@ h1 {
 #resposta {
   padding: 10px;
 }
+
+.selected {
+  border: solid 2px black;
+}
