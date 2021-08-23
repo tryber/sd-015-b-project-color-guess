@@ -1,9 +1,8 @@
 const showRGB = document.getElementById('rgb-color');
 const level = 100;
 const divBalls = document.getElementById('div-balls');
-const answer = document.getElementById('answer');
-const buttonResetColors = document.getElementById('reset-game');
 let score = 0;
+const answer = document.getElementById('answer');
 
 function scoreShow() {
   const showScore = document.getElementById('score');
@@ -97,6 +96,7 @@ function startGame() {
   answer.innerText = 'Escolha uma cor';
 }
 
+const buttonResetColors = document.getElementById('reset-game');
 buttonResetColors.addEventListener('click', startGame);
 
 window.onload = function start() {
