@@ -22,9 +22,12 @@ function colorBall(r, g, b) {
   const correctBall = Math.round(correct);
 
   for (let index = 0; index < ball.length; index += 1) {
-    const red = r * (index + level) / 2;
-    const green = g * (index + level) / 2;
-    const blue = b * (index + level) / 2;
+    const redMath = r * (index + level);
+    const red = redMath / 2;
+    const greenMath = g * (index + level);
+    const green = greenMath / 2;
+    const blueMath = b * (index + level);
+    const blue = blueMath / 2;
 
     const colorBallRGB = `(${levelLimited(red)}, ${levelLimited(green)}, ${levelLimited(blue)})`;
     ball[index].style.backgroundColor = `rgb${colorBallRGB}`;
@@ -59,17 +62,21 @@ function addBall(number) {
 
 addBall(6);
 
+function selectBallMSG(ball) {
+  const answer = document.getElementById('answer');
+
+  if (ball.style.backgroundColor === showRGB.innerText) {
+    answer.innerText = 'Acertou!';
+  } else {
+    answer.innerText = 'Errou! Tente novamente!';
+  }
+}
 function selectBall(evento) {
   const ball = document.querySelectorAll('.ball');
-  const answer = document.getElementById('answer');
 
   for (let index = 0; index < ball.length; index += 1) {
     if (evento.target === ball[index]) {
-      if (ball[index].style.backgroundColor === showRGB.innerText) {
-        answer.innerText = 'Acertou!';
-      } else {
-        answer.innerText = 'Errou! Tente novamente!';
-      }
+      selectBallMSG(ball[index]);
     }
   }
 }
