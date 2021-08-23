@@ -16,7 +16,7 @@ function levelLimited(number) {
   if (number > 0 && number <= 255) {
     output = number;
   } else {
-    const newNumberRandom = Math.random() * 255;
+    const newNumberRandom = Math.random() * 254;
     const newNumber = Math.round(newNumberRandom);
     output = newNumber;
   }
