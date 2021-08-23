@@ -28,6 +28,17 @@ generateGame();
 
 let points = 0;
 
+function selectBall(event) {
+  const clickedBall = event.target;
+  const previousBall = document.getElementsByClassName('selected');
+  if (previousBall.length === 0) {
+    clickedBall.classList.add('selected');
+  } else {
+    previousBall[0].classList.remove('selected');
+    clickedBall.classList.add('selected');
+  }
+}
+
 function checkGuess(event) {
   const guessBackground = event.target.style.background;
   if (guessBackground === answer) {
@@ -35,6 +46,7 @@ function checkGuess(event) {
     points += 3;
     counter.innerText = points;
     for (let i = 0; i < guesses.length; i += 1) {
+      guesses[i].removeEventListener('click', selectBall);
       guesses[i].removeEventListener('click', checkGuess);
     }
   } else {
@@ -42,31 +54,22 @@ function checkGuess(event) {
   }
 }
 
-// function selectBall(event) {
-//   const clickedBall = event.target;
-//   const previousBall = document.getElementsByClassName('selected');
-//   console.log(previousBall);
-//   if (previousBall.length === 0) {
-//     clickedBall.classList.add('selected');
-//   } else {
-//     previousBall[0].classList.remove('selected');
-//     clickedBall.classList.add('selected');
-//   }
-// }
-
 for (let i = 0; i < guesses.length; i += 1) {
+  guesses[i].addEventListener('click', selectBall);
   guesses[i].addEventListener('click', checkGuess);
-  // guesses[i].addEventListener('click', selectBall);
 }
 
 function resetGame() {
   generateGame();
   answerText.innerText = 'Escolha uma cor';
   for (let i = 0; i < guesses.length; i += 1) {
+    guesses[i].addEventListener('click', selectBall);
     guesses[i].addEventListener('click', checkGuess);
   }
-  // const previousBall = document.getElementsByClassName('selected');
-  // previousBall.classList.remove('selected');
+  const previousBall = document.getElementsByClassName('selected');
+  if (previousBall.length !== 0) {
+    previousBall[0].classList.remove('selected');
+  }
 }
 
 resetBtn.addEventListener('click', resetGame);
