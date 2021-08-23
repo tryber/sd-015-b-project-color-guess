@@ -1,5 +1,6 @@
 const showRGB = document.getElementById('rgb-color');
-const level = 1;
+const level = 100;
+const divBalls = document.getElementById('div-balls');
 
 function levelLimited(number) {
   let output = 0;
@@ -7,7 +8,9 @@ function levelLimited(number) {
   if (number > 0 && number <= 255) {
     output = number;
   } else {
-    output = Math.abs(number - 50);
+    const newNumberRandom = Math.random() * 255;
+    const newNumber = Math.round(newNumberRandom);
+    output = newNumber;
   }
 
   return output;
@@ -15,15 +18,19 @@ function levelLimited(number) {
 
 function colorBall(r, g, b) {
   const ball = document.querySelectorAll('.ball');
+  const correct = Math.random(1) * ball.length;
+  const correctBall = Math.round(correct);
 
   for (let index = 0; index < ball.length; index += 1) {
-    const red = r * index + level;
-    const green = g * index + level;
-    const blue = b * index + level;
+    const red = r * (index + level) / 2;
+    const green = g * (index + level) / 2;
+    const blue = b * (index + level) / 2;
 
     const colorBallRGB = `(${levelLimited(red)}, ${levelLimited(green)}, ${levelLimited(blue)})`;
     ball[index].style.backgroundColor = `rgb${colorBallRGB}`;
   }
+
+  ball[correctBall].style.backgroundColor = `rgb(${r}, ${g}, ${b})`;
 }
 
 function randomRGB() {
@@ -34,15 +41,13 @@ function randomRGB() {
   const g = Math.round(green);
   const b = Math.round(blue);
 
-  const rgb = `(${r}, ${g}, ${b})`;
+  const rgb = `rgb(${r}, ${g}, ${b})`;
 
   showRGB.innerText = rgb;
   colorBall(r, g, b);
 }
 
 function addBall(number) {
-  const divBalls = document.getElementById('div-balls');
-
   for (let index = 0; index < number; index += 1) {
     const ball = document.createElement('div');
 
@@ -52,7 +57,25 @@ function addBall(number) {
   }
 }
 
+addBall(6);
+
+function selectBall(evento) {
+  const ball = document.querySelectorAll('.ball');
+  const answer = document.getElementById('answer');
+
+  for (let index = 0; index < ball.length; index += 1) {
+    if (evento.target === ball[index]) {
+      if (ball[index].style.backgroundColor === showRGB.innerText) {
+        answer.innerText = 'Acertou!';
+      } else {
+        answer.innerText = 'Errou! Tente novamente!';
+      }
+    }
+  }
+}
+
+divBalls.addEventListener('click', selectBall);
+
 window.onload = function start() {
-  addBall(6);
   randomRGB();
 };
