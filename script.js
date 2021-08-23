@@ -1,6 +1,8 @@
 const showRGB = document.getElementById('rgb-color');
 const level = 100;
 const divBalls = document.getElementById('div-balls');
+const answer = document.getElementById('answer');
+const buttonResetColors = document.getElementById('reset-game');
 
 function levelLimited(number) {
   let output = 0;
@@ -63,8 +65,6 @@ function addBall(number) {
 addBall(6);
 
 function selectBallMSG(ball) {
-  const answer = document.getElementById('answer');
-
   if (ball.style.backgroundColor === showRGB.innerText) {
     answer.innerText = 'Acertou!';
   } else {
@@ -82,6 +82,13 @@ function selectBall(evento) {
 }
 
 divBalls.addEventListener('click', selectBall);
+
+function startGame() {
+  randomRGB();
+  answer.innerText = 'Escolha uma cor';
+}
+
+buttonResetColors.addEventListener('click', startGame);
 
 window.onload = function start() {
   randomRGB();
