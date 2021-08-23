@@ -3,6 +3,13 @@ const level = 100;
 const divBalls = document.getElementById('div-balls');
 const answer = document.getElementById('answer');
 const buttonResetColors = document.getElementById('reset-game');
+let score = 0;
+
+function scoreShow() {
+  const showScore = document.getElementById('score');
+
+  showScore.innerText = score;
+}
 
 function levelLimited(number) {
   let output = 0;
@@ -67,6 +74,8 @@ addBall(6);
 function selectBallMSG(ball) {
   if (ball.style.backgroundColor === showRGB.innerText) {
     answer.innerText = 'Acertou!';
+    score += 3;
+    scoreShow();
   } else {
     answer.innerText = 'Errou! Tente novamente!';
   }
