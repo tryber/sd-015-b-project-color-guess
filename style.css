@@ -1,0 +1,51 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  display: flex;
+  justify-content: center;
+}
+
+h1 {
+  margin-top: 50px;
+  margin-bottom: 50px;
+  display: flex;
+  justify-content: center;
+}
+
+#game-container {
+  display: flex;
+  flex-flow: column;
+  justify-content: center;
+  align-items: center;
+}
+
+#color-picker {
+  display: flex;
+  padding: 30px;
+}
+
+.ball {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  border: solid 1px grey;
+  margin: 5px;
+}
+
+#reset-game {
+  margin: 25px;
+  padding: 5px;
+  background-color: grey;
+  border-radius: 5px;
+}
+
+#resposta {
+  padding: 10px;
+}
+
+.selected {
+  border: solid 2px black;
+}
