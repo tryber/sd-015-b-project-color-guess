@@ -2,6 +2,7 @@ const myColor = document.getElementById('rgb-color');
 const myBall = document.getElementsByClassName('ball');
 const optionColors = document.getElementById('option-colors');
 const answer = document.getElementById('answer');
+const resetGame = document.getElementById('reset-game');
 
 function generateRandomNumber() {
   return Math.floor(Math.random() * 255).toString(10);
@@ -59,8 +60,19 @@ function selectColorClick() {
   optionColors.addEventListener('click', colorClick);
 }
 
+function newGame() {
+  chosenColor();
+  paintBalls();
+  answer.innerText = 'Escolha uma cor';
+}
+
+function restartGame() {
+  resetGame.addEventListener('click', newGame);
+}
+
 window.onload = function onloadPage() {
   chosenColor();
   paintBalls();
   selectColorClick();
+  restartGame();
 };
