@@ -1,4 +1,5 @@
 const myColor = document.getElementById('rgb-color');
+const myBall = document.getElementsByClassName('ball');
 
 function generateRandomNumber() {
   return Math.floor(Math.random() * 255).toString(10);
@@ -13,9 +14,22 @@ function generateRandomColor() {
     }
   }
   randomColor += ')';
-  myColor.innerText = randomColor;
+  return randomColor;
+}
+
+function chosenColor() {
+  myColor.innerText = generateRandomColor();
+}
+
+function paintBalls() {
+  for (let index = 0; index < myBall.length; index += 1) {
+    let color = 'rgb';
+    color += generateRandomColor();
+    myBall[index].style.backgroundColor = color;
+  }
 }
 
 window.onload = function onloadPage() {
-  generateRandomColor();
+  chosenColor();
+  paintBalls();
 };
