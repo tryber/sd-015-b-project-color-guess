@@ -1,10 +1,54 @@
 * {
-    margin:0;
-    padding:0
+  margin: 0;
+  padding: 0;
+}
+
+html , body {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: stretch;
+  height: 100%;
+  text-align: center;
+}
+
+#title {
+  font-size: x-large;
+  background-color: antiquewhite;
+  padding-top: 20px;
+  padding-bottom: 40px;
+}
+
+main {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+}
+
+#rgb-color {
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+
+.ball-conteiner {
+  display: flex;
+  margin-top: 20px;
+  margin-bottom: 20px;
 }
 
 .ball {
-    width: 100px;
-    height: 100px;
-    background: red;
+  width: 200px;
+  height: 200px;
+  background: yellow;
+  border: 3px solid black;
+  border-radius: 50%;
+}
+
+#footer {
+  font-size: large;
+  font-weight: 700;
+  background-color: beige;
+  padding-top: 20px;
+  padding-bottom: 10px;
+  margin-top: 40px;
 }
