@@ -8,9 +8,7 @@ const answerDisplay = document.getElementById('answer');
 const resetGameButton = document.getElementById('reset-game');
 
 // Gera um número aleatório entre 1 e 255 para o RGB
-const generateRandomNumber = () => {
-  return Math.floor(Math.random() * (255 - 1) + 1);
-};
+const generateRandomNumber = () => Math.floor(Math.random() * (255 - 1) + 1);
 
 // Gera uma cor aleatória em RGB
 const generateRandomRGB = () => {
@@ -29,7 +27,7 @@ const selectColor = (e) => {
   if (colorToBeGuess === colorGuess) {
     answerDisplay.innerText = 'Acertou!';
     score += 3;
-    scoreDisplay.innerText = `Pontuação: ${score}`
+    scoreDisplay.innerText = `Pontuação: ${score}`;
   } else {
     answerDisplay.innerText = 'Errou! Tente novamente';
   }
