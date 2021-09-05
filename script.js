@@ -1,6 +1,8 @@
 let gameColors = [];
 let colorToBeGuess = '';
+let score = 0;
 const initialMessage = 'Escolha uma cor';
+const scoreDisplay = document.getElementById('score');
 const rgbColorDisplay = document.getElementById('rgb-color');
 const answerDisplay = document.getElementById('answer');
 const resetGameButton = document.getElementById('reset-game');
@@ -26,6 +28,8 @@ const selectColor = (e) => {
   console.log(colorToBeGuess);
   if (colorToBeGuess === colorGuess) {
     answerDisplay.innerText = 'Acertou!';
+    score += 3;
+    scoreDisplay.innerText = `Pontuação: ${score}`
   } else {
     answerDisplay.innerText = 'Errou! Tente novamente';
   }
