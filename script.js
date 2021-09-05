@@ -1,6 +1,8 @@
+const gameColors = [];
+const rgbColorDiv = document.getElementById('rgb-color');
 // Gera um número aleatório entre 1 e 255 para o RGB.
 const generateRandomNumber = () => {
-  return Math.random() * (255 - 1) + 1;
+  return Math.floor(Math.random() * (255 - 1) + 1);
 }
 
 // Gera uma cor aleatória em RGB.
@@ -14,9 +16,11 @@ const generateRandomRGB = () => {
 
 // Cria um círculo de seleção de cor
 const createColorSelector = () => {
+  const randomColor = generateRandomRGB();
+  gameColors.push(randomColor);
   const color = document.createElement('div');
   color.className = 'ball';
-  color.style.backgroundColor = generateRandomRGB();
+  color.style.backgroundColor = randomColor;
   return color;
 };
 
@@ -28,6 +32,14 @@ const insertColors = () => {
   }
 };
 
+// Seleciona uma cor aleatória para ser adivinhada
+const PickGameColor = () => {
+  const randomPosition = Math.floor(Math.random() * 6);
+  const selectedColor = gameColors[randomPosition];
+  rgbColorDiv.innerText = selectedColor;
+}
+
 window.onload = () => {
   insertColors();
+  PickGameColor();
 };
