@@ -1,0 +1,10 @@
+#color-selector {
+    display: flex;
+}
+.ball {
+    border: 1px solid black;
+    border-radius: 50%;
+    width: 70px;
+    height: 70px;
+    margin: 0 7px;
+}
