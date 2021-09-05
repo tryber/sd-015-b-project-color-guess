@@ -1,4 +1,4 @@
-const gameColors = [];
+let gameColors = [];
 let colorToBeGuess = '';
 const initialMessage = 'Escolha uma cor';
 const rgbColorDisplay = document.getElementById('rgb-color');
@@ -8,7 +8,7 @@ const resetGameButton = document.getElementById('reset-game');
 // Gera um número aleatório entre 1 e 255 para o RGB
 const generateRandomNumber = () => {
   return Math.floor(Math.random() * (255 - 1) + 1);
-}
+};
 
 // Gera uma cor aleatória em RGB
 const generateRandomRGB = () => {
@@ -17,7 +17,7 @@ const generateRandomRGB = () => {
   const blue = generateRandomNumber();
   const rgb = `rgb(${red}, ${green}, ${blue})`;
   return rgb;
-}
+};
 
 // Usuário adivinha cor
 const selectColor = (e) => {
@@ -29,16 +29,16 @@ const selectColor = (e) => {
   } else {
     answerDisplay.innerText = 'Errou! Tente novamente';
   }
-} 
+};
 
 // Cria um círculo de seleção de cor
 const createColorSelector = () => {
   const randomColor = generateRandomRGB();
   gameColors.push(randomColor);
   const color = document.createElement('div');
+  color.style.backgroundColor = randomColor;
   color.className = 'ball';
   color.addEventListener('click', selectColor);
-  color.style.backgroundColor = randomColor;
   return color;
 };
 
@@ -46,6 +46,7 @@ const createColorSelector = () => {
 const insertColors = () => {
   const colorSelector = document.getElementById('color-selector');
   colorSelector.innerHTML = '';
+  gameColors = [];
   for (let i = 0; i < 6; i += 1) {
     colorSelector.appendChild(createColorSelector());
   }
@@ -57,14 +58,14 @@ const pickGameColor = () => {
   const selectedColor = gameColors[randomPosition];
   rgbColorDisplay.innerText = selectedColor;
   colorToBeGuess = selectedColor;
-}
+};
 
 // Inicia/Reinicia o jogo
 const startGame = () => {
   answerDisplay.innerText = initialMessage;
   insertColors();
   pickGameColor();
-}
+};
 
 window.onload = () => {
   resetGameButton.addEventListener('click', startGame);
