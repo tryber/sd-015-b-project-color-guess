@@ -1,14 +1,16 @@
 const gameColors = [];
 let colorToBeGuess = '';
+const initialMessage = 'Escolha uma cor';
 const rgbColorDisplay = document.getElementById('rgb-color');
 const answerDisplay = document.getElementById('answer');
+const resetGameButton = document.getElementById('reset-game');
 
-// Gera um número aleatório entre 1 e 255 para o RGB.
+// Gera um número aleatório entre 1 e 255 para o RGB
 const generateRandomNumber = () => {
   return Math.floor(Math.random() * (255 - 1) + 1);
 }
 
-// Gera uma cor aleatória em RGB.
+// Gera uma cor aleatória em RGB
 const generateRandomRGB = () => {
   const red = generateRandomNumber();
   const green = generateRandomNumber();
@@ -43,6 +45,7 @@ const createColorSelector = () => {
 // Insere os seletores de cores na tela
 const insertColors = () => {
   const colorSelector = document.getElementById('color-selector');
+  colorSelector.innerHTML = '';
   for (let i = 0; i < 6; i += 1) {
     colorSelector.appendChild(createColorSelector());
   }
@@ -56,7 +59,14 @@ const pickGameColor = () => {
   colorToBeGuess = selectedColor;
 }
 
-window.onload = () => {
+// Inicia/Reinicia o jogo
+const startGame = () => {
+  answerDisplay.innerText = initialMessage;
   insertColors();
   pickGameColor();
+}
+
+window.onload = () => {
+  resetGameButton.addEventListener('click', startGame);
+  startGame();
 };
