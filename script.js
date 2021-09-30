@@ -39,6 +39,7 @@ function userChoice(event) {
     scoreValue += 3;
     scoreContainer.innerText = scoreValue;
     answerPrint.innerText = 'Acertou!';
+    colorizeBalls();
   } else {
     answerPrint.innerText = 'Errou! Tente novamente!';
   }
