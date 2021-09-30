@@ -1,6 +1,8 @@
 const actualColors = [];
 const balls = document.querySelectorAll('.ball');
 const answerPrint = document.querySelector('#answer');
+const scoreContainer = document.querySelector('#score');
+let scoreValue = 0;
 let rightAnswer = '';
 
 function randomNumbers(max, min) {
@@ -34,6 +36,8 @@ function colorizeBalls() {
 
 function userChoice(event) {
   if (event.target.style.backgroundColor === rightAnswer) {
+    scoreValue += 3;
+    scoreContainer.innerText = scoreValue;
     answerPrint.innerText = 'Acertou!';
   } else {
     answerPrint.innerText = 'Errou! Tente novamente!';
