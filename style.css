@@ -8,7 +8,7 @@
 .container {
   background-color: #303030;
   color: rgb(231, 227, 227);
-  font-family: 'Montserrat', sans-serif;
+  font-family: Montserrat, sans-serif;
   border-radius: 5px;
   margin: 10px;
   padding: 30px;
@@ -26,7 +26,7 @@
 }
 
 #reset-game {
-  color:rgb(231, 227, 227);
+  color: rgb(231, 227, 227);
   background-color: royalblue;
   border: none;
   border-radius: 5px;
