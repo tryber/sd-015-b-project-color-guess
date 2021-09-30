@@ -1,5 +1,6 @@
 const actualColors = [];
 const balls = document.querySelectorAll('.ball');
+const answerPrint = document.querySelector('#answer');
 let rightAnswer = '';
 
 function randomNumbers(max, min) {
@@ -16,21 +17,22 @@ function generateRandomColors() {
   return rgbString;
 }
 
-function colorizeBalls() {
-  for (let i = 0; i < balls.length; i += 1) {
-    actualColors[i] = generateRandomColors();
-    balls[i].style.backgroundColor = actualColors[i];
-  }
-}
-
 function chooseRightColor() {
   const random6 = randomNumbers(5, 0);
   const colorRgb = document.querySelector('#rgb-color');
   rightAnswer = actualColors[random6];
   colorRgb.innerText = rightAnswer;
 }
+
+function colorizeBalls() {
+  for (let i = 0; i < balls.length; i += 1) {
+    actualColors[i] = generateRandomColors();
+    balls[i].style.backgroundColor = actualColors[i];
+  }
+  chooseRightColor();
+}
+
 function userChoice(event) {
-  const answerPrint = document.querySelector('#answer');
   if (event.target.style.backgroundColor === rightAnswer) {
     answerPrint.innerText = 'Acertou!';
   } else {
@@ -38,12 +40,19 @@ function userChoice(event) {
   }
 }
 
-function addEventsToBalls() {
+function resetGame() {
+  answerPrint.innerText = 'Escolha uma cor';
+  colorizeBalls();
+}
+
+function addEvents() {
   for (let i = 0; i < balls.length; i += 1) {
     balls[i].addEventListener('click', userChoice);
   }
+
+  const resetButton = document.querySelector('#reset-game');
+  resetButton.addEventListener('click', resetGame);
 }
 
 colorizeBalls();
-chooseRightColor();
-addEventsToBalls();
+addEvents();
