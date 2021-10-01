@@ -13,7 +13,7 @@ rgbPadrao.innerText = `${geraNumeros()}`;
 function averiguaCor(event) {
   if (event.target.style.backgroundColor === rgbPadrao.innerText) {
     resposta.innerText = 'Acertou!';
-    const valorAtual = parseInt(placar.innerText);
+    const valorAtual = parseFloat(placar.innerText);
     placar.innerText = valorAtual + 3;
   } else {
     resposta.innerText = 'Errou! Tente novamente!';
@@ -21,11 +21,14 @@ function averiguaCor(event) {
 }
 
 const balls = document.querySelectorAll('.ball');
+
+function criaBack(event) {
+  const estilo = event;
+  estilo.style.backgroundColor = geraNumeros();
+}
 function geraBolas() {
-  balls.forEach((element) => {
-    element.style.backgroundColor = geraNumeros();
-    element.addEventListener('click', averiguaCor);
-  });
+  balls.forEach((element) => criaBack(element));
+  balls.forEach((element) => element.addEventListener('click', averiguaCor));
 }
 geraBolas();
 
