@@ -5,19 +5,19 @@ function geraNumeros() {
   return `rgb(${gera1Termo}, ${gera2Termo}, ${gera3Termo})`;
 }
 const resposta = document.getElementById('answer');
+const placar = document.getElementById('score');
+const reseta = document.getElementById('reset-game');
 const rgbPadrao = document.getElementById('rgb-color');
 rgbPadrao.innerText = `${geraNumeros()}`;
 
 function averiguaCor(event) {
   if (event.target.style.backgroundColor === rgbPadrao.innerText) {
     resposta.innerText = 'Acertou!';
+    const valorAtual = parseInt(placar.innerText);
+    placar.innerText = valorAtual + 3;
   } else {
     resposta.innerText = 'Errou! Tente novamente!';
   }
-}
-
-function adicionaBotao(event) {
-  event.target.addEventListener('click', averiguaCor);
 }
 
 const balls = document.querySelectorAll('.ball');
@@ -32,5 +32,11 @@ geraBolas();
 function gerarCerto() {
   balls[Math.floor(Math.random() * (6 - 1) + 1)].style.backgroundColor = rgbPadrao.innerText;
 }
-
+function resetaGame() {
+  rgbPadrao.innerText = `${geraNumeros()}`;
+  geraBolas();
+  gerarCerto();
+  resposta.innerText = 'Escolha uma cor';
+}
+reseta.addEventListener('click', resetaGame);
 gerarCerto();
